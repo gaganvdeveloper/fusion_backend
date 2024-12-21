@@ -1,11 +1,14 @@
 package com.microsoft.fusion.entity;
 
+import java.awt.Window.Type;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import com.microsoft.fusion.util.EventStatus;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +33,7 @@ public class Event {
 	private String city;
 	private String guest;
 	private String photo;
+	@Enumerated(EnumType.STRING)
 	private EventStatus status;
 	@ManyToMany
 	private List<User> users;

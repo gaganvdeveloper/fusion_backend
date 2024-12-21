@@ -9,13 +9,10 @@ import com.microsoft.fusion.entity.Event;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
-
-	
-	@Query(" select e from event e where status= 'COMPLETED'")
+	@Query("select e from Event e where e.status ='COMPLETED'")
 	List<Event> findCompletedEvents();
 
-	//List<Event> findByStatus();
+  @Query("select e from Event e where e.status ='ON_GOING'")
+	List<Event> findAllOngoingEvents();
 
-	
-	
 }
