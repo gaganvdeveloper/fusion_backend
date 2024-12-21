@@ -3,7 +3,6 @@ package com.microsoft.fusion.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +40,12 @@ public class EventController {
 	public ResponseEntity<?> assignUserToEvent(@PathVariable int eid,@PathVariable int uid){
 		return service.assignUserToEvent(eid,uid);
 	}
+	
+	@GetMapping("/events/COMPLETED")
+	public ResponseEntity<?> findCompletedEvents(){
+		return service.findCompletedEvents();
+	}
+	
 	
 	
 	

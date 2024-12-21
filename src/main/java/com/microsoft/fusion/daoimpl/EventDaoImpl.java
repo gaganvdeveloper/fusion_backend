@@ -15,7 +15,12 @@ public class EventDaoImpl implements EventDao {
 	private EventRepository repository;
 
 	@Override
-	public List<Event> findAllEvents() {
+	public List<Event> findCompletedEvents() {
+		return repository.findCompletedEvents();
+	}
+
+  @Override
+  public List<Event> findAllEvents() {
 		return repository.findAll();
 	}
   

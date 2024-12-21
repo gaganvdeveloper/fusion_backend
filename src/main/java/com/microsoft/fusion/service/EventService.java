@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.microsoft.fusion.entity.Event;
 
-  public interface EventService {
+public interface EventService {
 
   ResponseEntity<?> findAllEvents();
 
@@ -13,5 +13,7 @@ import com.microsoft.fusion.entity.Event;
 	ResponseEntity<?> saveEvent(Event event);
 
 	ResponseEntity<?> assignUserToEvent(int eid, int uid);
+
+	ResponseEntity<?> findCompletedEvents();
 
 }
