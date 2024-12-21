@@ -1,8 +1,8 @@
 package com.microsoft.fusion.serviceimpl;
 
+import java.util.List;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.microsoft.fusion.dao.EventDao;
+import com.microsoft.fusion.entity.Event;
+import com.microsoft.fusion.exceptionclasses.NoEventsFoundException;
 import com.microsoft.fusion.dto.EventDto;
 import com.microsoft.fusion.entity.Event;
 import com.microsoft.fusion.exceptionclasses.InvalidEventIdException;
@@ -24,8 +26,20 @@ public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventDao eventDao;
+  
+  @Autowired
+	private UserDao userDao;
 
 	@Override
+	public ResponseEntity<?> findAllEvents() {
+		List<Event> events=eventDao.findAllEvents();
+		if(events.isEmpty()) {
+			throw NoEventsFoundException.builder().message("no events ara available").build();
+		}
+		return ResponseEntity.status(HttpStatus.OK.value()).body(ResponseStructure.builder().status(HttpStatus.OK.value()).message("all events found sucessfully").body(events).build());
+	}
+  
+  @Override
 	public ResponseEntity<?> findOngoingEvents() {
 		List<Event> events = eventDao.findAllOngoingEvents();
 		List<EventDto> onGoingList = new ArrayList<>();
@@ -38,8 +52,6 @@ public class EventServiceImpl implements EventService {
 	}
 	}
 	
-	@Autowired
-	private UserDao userDao;
 	
 	@Override
 	public ResponseEntity<?> saveEvent(Event event) {

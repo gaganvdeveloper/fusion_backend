@@ -2,7 +2,6 @@ package com.microsoft.fusion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,7 +23,10 @@ public class EventController {
 	@Autowired
 	private EventService service;
 	
-
+	@GetMapping("/events")
+	public ResponseEntity<?> findAllEvents(){
+		return service.findAllEvents();
+  }
 	@GetMapping("/ongoing")
 	public ResponseEntity<?>  findOngoingEvents(){
 		return service.findOngoingEvents();
@@ -38,7 +40,6 @@ public class EventController {
 	@PatchMapping("/register/{eid}/{uid}")
 	public ResponseEntity<?> assignUserToEvent(@PathVariable int eid,@PathVariable int uid){
 		return service.assignUserToEvent(eid,uid);
-
 	}
 	
 	

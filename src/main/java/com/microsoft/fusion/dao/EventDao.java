@@ -13,4 +13,6 @@ public interface EventDao {
 
 	Optional<Event> findEventById(int eid);
 
+	List<Event> findAllEvents();
+
 }

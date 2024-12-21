@@ -15,6 +15,11 @@ public class EventDaoImpl implements EventDao {
 	private EventRepository repository;
 
 	@Override
+	public List<Event> findAllEvents() {
+		return repository.findAll();
+	}
+  
+  @Override
 	public List<Event> findAllOngoingEvents() {
 		return repository.findAllOngoingEvents();
   }
@@ -28,4 +33,5 @@ public class EventDaoImpl implements EventDao {
 	public Optional<Event> findEventById(int eid) {
 		return repository.findById(eid);
 	}
+
 }
