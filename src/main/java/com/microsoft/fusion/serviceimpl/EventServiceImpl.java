@@ -61,7 +61,6 @@ public class EventServiceImpl implements EventService {
 			throw new InvalidEventIdException("No OnGoing Event Found...");
 		return ResponseEntity.status(HttpStatus.OK).body(ResponseStructure.builder().status(HttpStatus.OK.value()).message("All Ongoing Events Found Successfully").body(onGoingList).build());
 	}
-	}
 	
 	@Override
 	public ResponseEntity<?> saveEvent(Event event) {
